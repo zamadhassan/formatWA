@@ -488,60 +488,94 @@ nav a:focus-visible {
 
 .quick-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
 }
 
 .quick-card {
+  position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  background: var(--bg-card);
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.06), transparent 42%), var(--bg-card);
   color: inherit;
   cursor: pointer;
-  gap: 12px;
-  padding: 16px 20px;
+  gap: 18px;
+  min-height: 96px;
+  overflow: hidden;
+  padding: 18px 20px;
   text-align: left;
   transition: all 0.2s;
+}
+
+.quick-card::before {
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 0;
+  width: 3px;
+  border-radius: 0 999px 999px 0;
+  background: var(--accent);
+  content: '';
+  opacity: 0;
+  transition: opacity 0.2s;
 }
 
 .quick-card:hover,
 .quick-card:focus-visible {
   border-color: var(--accent);
-  background: var(--accent-glow);
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.16), rgba(37, 211, 102, 0.04));
   box-shadow: var(--shadow-glow);
   outline: none;
   transform: translateY(-2px);
 }
 
+.quick-card:hover::before,
+.quick-card:focus-visible::before {
+  opacity: 1;
+}
+
 .quick-card-info {
+  display: flex;
   flex: 1;
+  flex-direction: column;
+  gap: 8px;
   min-width: 0;
 }
 
 .quick-card-name {
+  display: block;
+  overflow: hidden;
   margin-bottom: 4px;
   color: var(--text-primary);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: -0.1px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .quick-card-example {
+  display: block;
   overflow: hidden;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-family: var(--font-mono);
   font-size: 13px;
+  line-height: 1.5;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .quick-card-tag {
+  flex: 0 0 auto;
+  align-self: flex-start;
   border-radius: 999px;
   font-size: 11px;
   font-weight: 600;
-  padding: 2px 8px;
+  line-height: 1;
+  padding: 6px 9px;
 }
 
 .tag-wa {
